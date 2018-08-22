@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "My Apps",
+  "short_name": "My Apps",
+  "version": "io.cordova.tech",
+  "description": "Online Plat form for All Employee",
+  "author": "My Apps Team",
+  "icons": [],
+  "start_url": "index.html"
+}

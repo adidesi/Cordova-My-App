@@ -1,0 +1,77 @@
+
+<script type="text/javascript">
+	document.addEventListener("deviceready",onDeviceReady,false);
+	function onDeviceReady(){
+		var push = PushNotification.init({ "android": {"senderID": "446897882895"}});
+		push.on('registration', function(data) {
+			console.log(data.registrationId);
+			//alert(data.registrationId);
+			document.getElementById("gcm_id").innerHTML = data.registrationId;
+			$.ajax({
+			   type: "POST",
+			   url: "gcmregistration.php",
+			   data: "gcm_id="+data.registrationId,
+			   success: function(msg){
+				 alert( "Data Saved: " + msg );
+			   }
+			 });; 
+		 });
+		 push.on('notification', function(data) {
+			alert(data.title+" Message: " +data.message);
+		 });
+		 push.on('error', function(e) {
+			alert(e);
+		 });
+	}
+	function myFunction() {
+		var x = document.getElementById("myTopnav");
+		if (x.className === "topnav") {
+			x.className += " responsive";
+		} else {
+			x.className = "topnav";
+		}
+	}
+</script>
+
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#help">Help</a>
+  <a href="#changePwd">Change Password</a>
+  <a href="#myProfile">My Profile</a>
+  <a href="#notifications">Notifications</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<div id='grid-dashboard'>
+	<div class="ui-grid-d center">	
+	
+		<div class="row"> 
+			<div class="column" >
+				<img src="/android_asset/www/assets/img/ano.png" id='announcement'>
+			</div>
+			<div class="column" >
+				<img src="/android_asset/www/assets/img/call-tree.png" id='call-tree'>
+			</div>  
+			<div class="column" >
+				<img src="/android_asset/www/assets/img/chat.png" id='chat'>
+			</div>
+			<div class="column" >
+				<img src="/android_asset/www/assets/img/globe.png" id='globe'>
+			</div>
+			<div class="column" >
+				<img src="/android_asset/www/assets/img/info.png" id='info'>
+			</div>
+			<div class="column">
+				<img src="/android_asset/www/assets/img/network.png" id='network'>
+			</div>
+			<div class="column" >
+				<img src="/android_asset/www/assets/img/like.png" id='like'>
+			</div>
+			<div class="column" >
+				<img src="/android_asset/www/assets/img/social.png" id='social' >
+			</div>
+		</div>
+	</div>
+</div>
+
